@@ -1,0 +1,21 @@
+.app-header {
+    display: flex;
+    align-items: center;
+    height: 24px;
+    padding: 4px;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+}
+
+.days-list {
+    height: 24px;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+
+    &__item {
+        flex: 1 1;
+        padding: 4px;
+        border: 1px solid #ccc;
+    }
+}

@@ -1,0 +1,11 @@
+.days-list {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+
+    &__item {
+        border: 1px solid #ccc;
+        min-height: 100px;
+        padding: 8px;
+    }
+}

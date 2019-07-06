@@ -1,0 +1,5 @@
+<div>{{date | dateFormat:'DAY_NUMBER'}}</div>
+
+<div class="tasks">
+    <app-task *ngFor="let task of tasks$ | async" [task]="task"></app-task>
+</div>

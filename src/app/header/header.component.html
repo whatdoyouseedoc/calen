@@ -1,0 +1,17 @@
+<div class="app-header">
+    <a [routerLink]="prev" class="month-btn month-btn--prev">Prev month</a>
+    <div class="current-month">{{monthWord}} {{year}}</div>
+    <a [routerLink]="next" class="month-btn month-btn--next">Next month</a>
+</div>
+
+<div class="days-list">
+    <div class="days-list__item">Mon</div>
+    <div class="days-list__item">Tues</div>
+    <div class="days-list__item">Wed</div>
+    <div class="days-list__item">Thu</div>
+    <div class="days-list__item">Fri</div>
+    <div class="days-list__item">Sat</div>
+    <div class="days-list__item">Sun</div>
+</div>
+
+<app-days-list [daysList]="daysList"></app-days-list>
