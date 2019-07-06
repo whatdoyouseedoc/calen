@@ -5,7 +5,7 @@ export const defaultTasksState: Task[] = [
     {
         index: 0,
         date: '1-7-2019',
-        text: 'Sample text 1'
+        text: 'Sample text 1 Sample text 1 Sample text 1'
     },
     {
         index: 1,

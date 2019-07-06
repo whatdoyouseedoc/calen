@@ -1,21 +1,37 @@
+$header-bg: rgb(234, 236, 241);
+$header-font-color: rgb(113, 127, 157);
+$days-font-color: rgb(137, 145, 162);
+
 .app-header {
     display: flex;
     align-items: center;
     height: 24px;
-    padding: 4px;
+    padding: 24px;
     justify-content: space-between;
     border: 1px solid #ccc;
+    background: $header-bg;
+    color: $header-font-color;
+    font-size: 27px;
+    font-weight: bold;
 }
+
+$days-list-bg: rgb(210, 213, 219);
 
 .days-list {
     height: 24px;
     border: 1px solid #ccc;
+    background: $days-list-bg;
     display: flex;
     align-items: center;
 
     &__item {
+        display: flex;
         flex: 1 1;
-        padding: 4px;
         border: 1px solid #ccc;
+        color: $days-font-color;
+        font-size: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        justify-content: center;
     }
 }

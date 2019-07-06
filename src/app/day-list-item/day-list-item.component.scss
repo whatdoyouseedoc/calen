@@ -1,0 +1,22 @@
+$yellow: rgb(255, 255, 244);
+$grey: rgb(247, 247, 247);
+
+.cell {
+    border: 1px solid #ccc;
+    min-height: 150px;
+    padding: 10px;
+
+    &:hover {
+        cursor: pointer;
+        background: $yellow;
+    }
+
+    &--inactive {
+        background: $grey;
+    }
+}
+
+.cell-date {
+    display: flex;
+    justify-content: flex-end;
+}

@@ -1,5 +1,7 @@
-<div>{{date | dateFormat:'DAY_NUMBER'}}</div>
+<div class="cell" [ngClass]="{'cell--inactive': isInactive}">
+    <div class="cell-date">{{date | dateFormat:'DAY_NUMBER'}}</div>
 
-<div class="tasks">
-    <app-task *ngFor="let task of tasks$ | async" [task]="task"></app-task>
+    <div class="tasks">
+        <app-task *ngFor="let task of tasks$ | async" [task]="task"></app-task>
+    </div>
 </div>
