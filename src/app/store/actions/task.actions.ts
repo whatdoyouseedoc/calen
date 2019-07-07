@@ -11,7 +11,7 @@ export class AddTask implements Action {
 
 export class RemoveTask implements Action {
     readonly type = REMOVE_TASK;
-    constructor(public task: Task) {}
+    constructor(public payload: Task) {}
 }
 
 export type TaskActions = AddTask | RemoveTask;

@@ -1,7 +1,24 @@
-<div class="cell" [ngClass]="{'cell--inactive': isInactive}">
+<div
+    class="cell"
+    [ngClass]="{'cell--inactive': isInactive}"
+    (click)="edit($event)"
+    (dragover)="allowDrop($event)"
+    (drop)="drop($event)">
     <div class="cell-date">{{date | dateFormat:'DAY_NUMBER'}}</div>
 
     <div class="tasks">
         <app-task *ngFor="let task of tasks$ | async" [task]="task"></app-task>
     </div>
+</div>
+
+<div class="edit-popup edit-popup--right" *ngIf="editMode">
+    <div class="tasks">
+        <app-task
+            *ngFor="let task of tasks$ | async"
+            class="edit-popup__task"
+            [task]="task"
+            [showDelete]="true"></app-task>
+    </div>
+
+    <textarea class="input" rows="3" (keydown.control.enter)="save($event)"></textarea>
 </div>

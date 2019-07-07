@@ -1,5 +1,11 @@
 $yellow: rgb(255, 255, 244);
-$grey: rgb(247, 247, 247);
+$inactive-bg: rgb(247, 247, 247);
+$edit-bg: rgb(243, 243, 243);
+$edit-width: 300px;
+
+:host {
+    position: relative;
+}
 
 .cell {
     border: 1px solid #ccc;
@@ -12,11 +18,40 @@ $grey: rgb(247, 247, 247);
     }
 
     &--inactive {
-        background: $grey;
+        background: $inactive-bg;
     }
 }
 
 .cell-date {
     display: flex;
     justify-content: flex-end;
+}
+
+.edit-popup {
+    position: absolute;
+    top: 0;
+    min-height: 150px;
+    width: 300px;
+    padding: 10px;
+    background: $edit-bg;
+    z-index: 1;
+    display: flex;
+    flex-flow: column;
+
+    &__task {
+        padding-bottom: 10px;
+    }
+
+    .input {
+        resize: none;
+
+    }
+
+    &--left {
+        left: -$edit-width;
+    }
+
+    &--right {
+        right: -$edit-width;
+    }
 }

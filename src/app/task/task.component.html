@@ -1,3 +1,9 @@
-<div class="task" (click)="edit()">
-    {{task?.text}}
+<div class="task" draggable="true" (dragstart)="drag($event)">
+    <div class="text">
+        {{task?.text}}
+    </div>
+    <button
+        *ngIf="showDelete"
+        class="delete"
+        (click)="delete()">X</button>
 </div>
