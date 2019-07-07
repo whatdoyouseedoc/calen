@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Task } from '../models/task.model';
+import { Task } from '../../models/task.model';
 import { Store } from '@ngrx/store';
-import { AppState } from '../store/state/app.state';
-import { RemoveTask } from '../store/actions/task.actions';
+import { AppState } from '../../store/state/app.state';
+import { RemoveTask } from '../../store/actions/task.actions';
 
 @Component({
   selector: 'app-task',

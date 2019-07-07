@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 import {Routes, RouterModule} from '@angular/router';
-import { DaysListComponent } from './days-list/days-list.component';
+import { MonthComponent } from './components/month/month.component';
 import { DateFormatPipe } from './date-format.pipe';
-import { TaskComponent } from './task/task.component';
-import { DayListItemComponent } from './day-list-item/day-list-item.component';
+import { TaskComponent } from './components/task/task.component';
+import { DayComponent } from './components/day/day.component';
 import { StoreModule } from '@ngrx/store';
 import { TaskReducer } from './store/reducers/task.reducer';
 import { EffectsModule } from '@ngrx/effects';
@@ -22,10 +22,10 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    DaysListComponent,
+    MonthComponent,
     DateFormatPipe,
     TaskComponent,
-    DayListItemComponent,
+    DayComponent,
   ],
   imports: [
     BrowserModule,

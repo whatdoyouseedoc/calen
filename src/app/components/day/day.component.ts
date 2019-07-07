@@ -1,21 +1,20 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Task } from '../models/task.model';
-import { selectTasksByDate, selectTaskById } from '../store/selectors/task.selector';
-import { AppState } from '../store/state/app.state';
+import { Task } from '../../models/task.model';
+import { selectTasksByDate, selectTaskById } from '../../store/selectors/task.selector';
+import { AppState } from '../../store/state/app.state';
 import * as moment from'moment';
 import { ActivatedRoute } from '@angular/router';
-import { AddTask, RemoveTask } from '../store/actions/task.actions';
-import { IdGenService } from '../id-gen.service';
-import {first} from 'rxjs/operators';
+import { AddTask, RemoveTask } from '../../store/actions/task.actions';
+import { IdGenService } from '../../id-gen.service';
 
 @Component({
-  selector: 'app-day-list-item',
-  templateUrl: './day-list-item.component.html',
-  styleUrls: ['./day-list-item.component.scss']
+  selector: 'app-day',
+  templateUrl: './day.component.html',
+  styleUrls: ['./day.component.scss']
 })
-export class DayListItemComponent implements OnInit {
+export class DayComponent implements OnInit {
 
   private _date: string;
   @Input() public set date(date: string) {

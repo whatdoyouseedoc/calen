@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
-import { DateService } from '../date.service';
+import { DateService } from '../../date.service';
 
 @Component({
   selector: 'app-header',
