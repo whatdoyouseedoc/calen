@@ -17,7 +17,16 @@ import {first} from 'rxjs/operators';
 })
 export class DayListItemComponent implements OnInit {
 
-  @Input() public date;
+  private _date: string;
+  @Input() public set date(date: string) {
+    this._date = date;
+    this.popupLeftAlign = this.popupOnLeft();
+  }
+  public get date() {
+    return this._date;
+  }
+
+  public popupLeftAlign = false;
   public isInactive = false;
   public tasks$: Observable<Task[]>;
   public editMode = false;
@@ -63,6 +72,10 @@ export class DayListItemComponent implements OnInit {
         this.store.dispatch(new AddTask(newTask));
       }
     });
+  }
+
+  popupOnLeft() {
+    return ['Friday', 'Saturday', 'Sunday'].includes(moment(this.date).format('dddd'));
   }
 
   private setIsInactive() {

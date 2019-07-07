@@ -10,7 +10,8 @@ import { TaskComponent } from './task/task.component';
 import { DayListItemComponent } from './day-list-item/day-list-item.component';
 import { StoreModule } from '@ngrx/store';
 import { TaskReducer } from './store/reducers/task.reducer';
-import { ReadComponent } from './read/read.component';
+import { EffectsModule } from '@ngrx/effects';
+import { TasksEffects } from './store/effects/tasks.effects';
 
 const appRoutes: Routes = [
   {path: 'year/:year/month/:month', component: HeaderComponent},
@@ -25,14 +26,14 @@ const appRoutes: Routes = [
     DateFormatPipe,
     TaskComponent,
     DayListItemComponent,
-    ReadComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     StoreModule.forRoot({
       tasks: TaskReducer
-    })
+    }),
+    EffectsModule.forRoot([TasksEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]

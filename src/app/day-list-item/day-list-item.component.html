@@ -11,7 +11,11 @@
     </div>
 </div>
 
-<div class="edit-popup edit-popup--right" *ngIf="editMode">
+<div
+    *ngIf="editMode"
+    class="edit-popup"
+    [ngClass]="{'edit-popup--left': popupLeftAlign}">
+    <div class="arrow"></div>
     <div class="tasks">
         <app-task
             *ngFor="let task of tasks$ | async"
@@ -20,5 +24,9 @@
             [showDelete]="true"></app-task>
     </div>
 
-    <textarea class="input" rows="3" (keydown.control.enter)="save($event)"></textarea>
+    <textarea
+        class="input"
+        placeholder="Ctrl+enter = add event"
+        rows="3"
+        (keydown.control.enter)="save($event)"></textarea>
 </div>

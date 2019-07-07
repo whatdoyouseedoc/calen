@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Task } from '../models/task.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/state/app.state';
-import { AddTask, RemoveTask } from '../store/actions/task.actions';
+import { RemoveTask } from '../store/actions/task.actions';
 
 @Component({
   selector: 'app-task',
@@ -24,7 +24,6 @@ export class TaskComponent implements OnInit {
   }
 
   drag(event) {
-    console.log(event);
     event.dataTransfer.setData('id', this.task.id);
   }
 

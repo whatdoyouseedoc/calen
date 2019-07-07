@@ -37,6 +37,21 @@ $edit-width: 300px;
     z-index: 1;
     display: flex;
     flex-flow: column;
+    right: -$edit-width - 14px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+
+    .arrow {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 50%;
+        transform: rotateZ(45deg) translate(-75%);
+        left: 0;
+        border-left: 2px solid #ccc;
+        border-bottom: 2px solid #ccc;
+        background: $edit-bg;
+    }
 
     &__task {
         padding-bottom: 10px;
@@ -48,10 +63,14 @@ $edit-width: 300px;
     }
 
     &--left {
-        left: -$edit-width;
-    }
+        left: -$edit-width - 14px;
 
-    &--right {
-        right: -$edit-width;
+        .arrow {
+            left: initial;
+            right: 0;
+            transform: rotateZ(-45deg) translate(75%);
+            border-left: none;
+            border-right: 2px solid #ccc;
+        }
     }
 }
