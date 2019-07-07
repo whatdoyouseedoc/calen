@@ -20,6 +20,7 @@ describe('DayComponent', () => {
   });
 
   it('should create', () => {
+    component.date = '1-7-2019';
     expect(component).toBeTruthy();
   });
 });
