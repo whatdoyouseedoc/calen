@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { DateService } from '../date.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   public year: string;
   public month: string;
@@ -18,10 +19,10 @@ export class HeaderComponent implements OnInit {
   public params$;
   public daysList: string[];
 
-  constructor(private activatedRoute: ActivatedRoute) {
-    this.params$ = this.activatedRoute.params.subscribe(({year, month}) => {
-      this.setCurrentDate(year, month);
-      this.daysList = this.getDaysArray();
+  constructor(private activatedRoute: ActivatedRoute, private dateSrv: DateService) {
+    this.params$ = this.activatedRoute.params.subscribe(({month, year}) => {
+      this.setCurrentDate(month, year);
+      this.daysList = this.dateSrv.getExtendedMonth(month, year);
     });
   }
 
@@ -29,16 +30,16 @@ export class HeaderComponent implements OnInit {
   }
 
   prevMonth() {
-    const [month, year] = moment(`${this.month} ${this.year}`, 'M YYYY').subtract(1, 'months').format('M YYYY').split(' ');
+    const {month, year} = this.dateSrv.getPrevMonthYear(this.month, this.year);
     return `/year/${year}/month/${month}`;
   }
 
   nextMonth() {
-    const [month, year] = moment(`${this.month} ${this.year}`, 'M YYYY').add(1, 'months').format('M YYYY').split(' ');
+    const {month, year} = this.dateSrv.getNextMonthYear(this.month, this.year);
     return `/year/${year}/month/${month}`;
   }
 
-  setCurrentDate(year, month) {
+  setCurrentDate(month, year) {
     this.year = year || moment().format('YYYY');
     this.month = month || moment().format('M');
     this.monthWord = moment(this.month, 'M').format('MMMM');
@@ -46,29 +47,7 @@ export class HeaderComponent implements OnInit {
     this.next = this.nextMonth();
   }
 
-  getDaysArray() {
-    const date = moment(`1 ${this.month} ${this.year}`, 'D M YYYY');
-    const daysInMonth = date.daysInMonth();
-    const days = [];
-
-    let cur = date;
-    for (let i = 1; i <= daysInMonth; i++ ) {
-      days.push(cur.toString());
-      cur = moment(cur).add(1, 'days');
-    }
-
-    cur = date;
-    while (cur.format('dddd') !== 'Monday') {
-      cur = moment(cur).subtract(1, 'days');
-      days.unshift(cur.toString());
-    }
-
-    cur = moment(days[days.length - 1]);
-    while (cur.format('dddd') !== 'Sunday') {
-      cur = moment(cur).add(1, 'days');
-      days.push(cur.toString());
-    }
-
-    return days;
+  ngOnDestroy() {
+    this.params$.unsubscribe();
   }
 }
