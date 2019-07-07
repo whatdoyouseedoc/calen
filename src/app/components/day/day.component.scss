@@ -9,7 +9,8 @@ $edit-width: 300px;
 
 .cell {
     border: 1px solid #ccc;
-    min-height: 150px;
+    height: 150px;
+    overflow: hidden;
     padding: 10px;
 
     &:hover {
@@ -51,6 +52,7 @@ $edit-width: 300px;
         border-left: 2px solid #ccc;
         border-bottom: 2px solid #ccc;
         background: $edit-bg;
+        z-index: -1;
     }
 
     &__task {
