@@ -8,6 +8,7 @@ import * as moment from'moment';
 import { ActivatedRoute } from '@angular/router';
 import { AddTask, RemoveTask } from '../../store/actions/task.actions';
 import { IdGenService } from '../../id-gen.service';
+import { filter, first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-day',
@@ -64,7 +65,7 @@ export class DayComponent implements OnInit {
   drop(event) {
     event.preventDefault();
     const id = event.dataTransfer.getData('id');
-    this.store.pipe(select(selectTaskById, {id})).subscribe(it => {
+    this.store.pipe(first(), select(selectTaskById, {id})).subscribe(it => {
       if (it.date !== moment(this.date).format('D-M-YYYY')) {
         let newTask = {...it, date: moment(this.date).format('D-M-YYYY')};
         this.store.dispatch(new RemoveTask(it));
