@@ -13,8 +13,7 @@ import { AppState } from '../../store/state/app.state';
 @Component({
   selector: 'app-day',
   templateUrl: './day.component.html',
-  styleUrls: ['./day.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./day.component.scss']
 })
 export class DayComponent implements OnInit {
 
@@ -80,7 +79,7 @@ export class DayComponent implements OnInit {
     return ['Friday', 'Saturday', 'Sunday'].includes(moment(this.date).format('dddd'));
   }
 
-  private setIsInactive() {
+  public setIsInactive() {
     const routeMonth = this.activatedRoute.snapshot.params['month'];
     const cellMonth = moment(this.date).format('M');
 
@@ -92,7 +91,6 @@ export class DayComponent implements OnInit {
       if (event.target.closest('.edit-popup') === null) {
         this.editMode = false;
         window.removeEventListener('click', blurHandler);
-        this.cd.detectChanges();
       }
     };
     setTimeout(() => {
