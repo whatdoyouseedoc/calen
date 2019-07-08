@@ -1,6 +1,6 @@
 <div
     class="cell"
-    [ngClass]="{'cell--inactive': isInactive}"
+    [ngClass]="{'cell--inactive': setIsInactive()}"
     (click)="edit()"
     (dragover)="allowDrop($event)"
     (drop)="drop($event)">

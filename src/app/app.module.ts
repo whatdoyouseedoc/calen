@@ -16,6 +16,7 @@ import { TasksEffects } from './store/effects/tasks.effects';
 const appRoutes: Routes = [
   {path: 'year/:year/month/:month', component: HeaderComponent},
   {path: '', component: HeaderComponent},
+  {path: '**', component: HeaderComponent},
 ];
 
 @NgModule({

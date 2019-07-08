@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { DateService } from '../../date.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -19,8 +20,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public params$;
   public daysList: string[];
 
-  constructor(private activatedRoute: ActivatedRoute, private dateSrv: DateService) {
+  constructor(private activatedRoute: ActivatedRoute, private dateSrv: DateService, private location: Location) {
     this.params$ = this.activatedRoute.params.subscribe(({month, year}) => {
+      if (month === undefined || year === undefined) {
+        year = moment().format('YYYY');
+        month = moment().format('M');
+        this.location.go(`/year/${year}/month/${month}`);
+      }
+
       this.setCurrentDate(month, year);
       this.daysList = this.dateSrv.getExtendedMonth(month, year);
     });
@@ -40,8 +47,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   setCurrentDate(month, year) {
-    this.year = year || moment().format('YYYY');
-    this.month = month || moment().format('M');
+    this.year = year;
+    this.month = month;
     this.monthWord = moment(this.month, 'M').format('MMMM');
     this.prev = this.prevMonth();
     this.next = this.nextMonth();

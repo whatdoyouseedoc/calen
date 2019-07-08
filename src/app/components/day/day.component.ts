@@ -27,7 +27,6 @@ export class DayComponent implements OnInit {
   }
 
   public popupLeftAlign = false;
-  public isInactive = false;
   public tasks$: Observable<Task[]>;
   public editMode = false;
 
@@ -38,8 +37,9 @@ export class DayComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isInactive = this.setIsInactive();
-    this.tasks$ = this.store.pipe(select(selectTasksByDate, {date: moment(this.date).format('D-M-YYYY')}));
+    this.tasks$ = this.store.pipe(
+      select(selectTasksByDate, {date: moment(this.date).format('D-M-YYYY')})
+    );
   }
 
   edit() {
