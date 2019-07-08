@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MonthComponent implements OnInit {
 
   @Input() public daysList;
-  
+
   constructor() { }
 
   ngOnInit() {

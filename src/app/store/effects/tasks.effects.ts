@@ -17,7 +17,7 @@ export class TasksEffects {
 
     @Effect({dispatch: false})
     syncAndAdd$ = this.actions$.pipe(
-      ofType<TaskActions>(ADD_TASK),
+      ofType<TaskActions>(ADD_TASK, REMOVE_TASK),
       withLatestFrom(this.store),
       map(([action, storeState]) => storeState),
       tap(({tasks}) => {
