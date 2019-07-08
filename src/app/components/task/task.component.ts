@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { Task } from '../../models/task.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/state/app.state';

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import * as moment from 'moment';
@@ -13,7 +13,8 @@ import { AppState } from '../../store/state/app.state';
 @Component({
   selector: 'app-day',
   templateUrl: './day.component.html',
-  styleUrls: ['./day.component.scss']
+  styleUrls: ['./day.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DayComponent implements OnInit {
 
@@ -33,7 +34,8 @@ export class DayComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private activatedRoute: ActivatedRoute,
-    private idGen: IdGenService) {
+    private idGen: IdGenService,
+    private cd: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -90,6 +92,7 @@ export class DayComponent implements OnInit {
       if (event.target.closest('.edit-popup') === null) {
         this.editMode = false;
         window.removeEventListener('click', blurHandler);
+        this.cd.detectChanges();
       }
     };
     setTimeout(() => {
