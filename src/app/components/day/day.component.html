@@ -1,7 +1,7 @@
 <div
     class="cell"
     [ngClass]="{'cell--inactive': isInactive}"
-    (click)="edit($event)"
+    (click)="edit()"
     (dragover)="allowDrop($event)"
     (drop)="drop($event)">
     <div class="cell-date">{{date | dateFormat:'DAY_NUMBER'}}</div>

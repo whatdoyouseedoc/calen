@@ -28,7 +28,7 @@ export const defaultTasksState: Task[] = JSON.parse(localStorage.getItem('tasksS
 export function TaskReducer(state: Task[] = defaultTasksState, action: TaskActions) {
     switch (action.type) {
         case ADD_TASK:
-            syncLocalStorage([...state, action.payload]);
+            // syncLocalStorage([...state, action.payload]);
             return [...state, action.payload];
         case REMOVE_TASK:
             let i = state.indexOf(action.payload);

@@ -6,7 +6,7 @@ import { selectTasksByDate, selectTaskById } from '../../store/selectors/task.se
 import { AppState } from '../../store/state/app.state';
 import * as moment from'moment';
 import { ActivatedRoute } from '@angular/router';
-import { AddTask, RemoveTask } from '../../store/actions/task.actions';
+import { AddTask, RemoveTask, SyncAndAdd } from '../../store/actions/task.actions';
 import { IdGenService } from '../../id-gen.service';
 import { filter, first } from 'rxjs/operators';
 
@@ -42,7 +42,7 @@ export class DayComponent implements OnInit {
     this.tasks$ = this.store.pipe(select(selectTasksByDate, {date: moment(this.date).format('D-M-YYYY')}));
   }
 
-  edit({target}) {
+  edit() {
     this.editMode = true;
     this.closeOnLoosingFocus();
   }
@@ -94,6 +94,6 @@ export class DayComponent implements OnInit {
     };
     setTimeout(() => {
       window.addEventListener('click', blurHandler);
-    }, 0);
+    });
   }
 }

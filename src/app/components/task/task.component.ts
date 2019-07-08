@@ -19,7 +19,7 @@ export class TaskComponent implements OnInit {
   ngOnInit() {
   }
 
-  delete(event) {
+  delete() {
     this.store.dispatch(new RemoveTask(this.task));
   }
 
