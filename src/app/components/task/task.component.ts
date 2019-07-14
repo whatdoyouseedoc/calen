@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Task } from '../../models/task.model';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/state/app.state';
@@ -23,7 +23,7 @@ export class TaskComponent implements OnInit {
     this.store.dispatch(new RemoveTask(this.task));
   }
 
-  drag(event) {
+  drag(event: DragEvent) {
     event.dataTransfer.setData('id', this.task.id);
   }
 

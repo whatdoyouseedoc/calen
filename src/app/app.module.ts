@@ -1,9 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import {Routes, RouterModule} from '@angular/router';
+import { MainComponent } from './components/main/main.component';
+import { RouterModule, Routes } from '@angular/router';
 import { MonthComponent } from './components/month/month.component';
 import { DateFormatPipe } from './date-format.pipe';
 import { TaskComponent } from './components/task/task.component';
@@ -12,21 +11,23 @@ import { StoreModule } from '@ngrx/store';
 import { TaskReducer } from './store/reducers/task.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { TasksEffects } from './store/effects/tasks.effects';
+import { NavButtonComponent } from './components/nav-button/nav-button.component';
 
-const appRoutes: Routes = [
-  {path: 'year/:year/month/:month', component: HeaderComponent},
-  {path: '', component: HeaderComponent},
-  {path: '**', component: HeaderComponent},
+export const appRoutes: Routes = [
+  {path: 'year/:year/month/:month', component: MainComponent},
+  {path: '', component: MainComponent},
+  {path: '**', component: MainComponent},
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    MainComponent,
     MonthComponent,
     DateFormatPipe,
     TaskComponent,
     DayComponent,
+    NavButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,4 +40,5 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

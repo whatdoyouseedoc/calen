@@ -1,0 +1,6 @@
+<a [routerLink]="navLink"
+   class="nav-button"
+   [ngSwitch]="flip">
+  <i *ngSwitchCase="false" class="font-icon icon-left-open">&#xe801;</i>
+  <i *ngSwitchCase="true" class="font-icon icon-right-open">&#xe802;</i>
+</a>

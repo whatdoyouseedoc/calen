@@ -1,21 +1,47 @@
 $header-bg: rgb(234, 236, 241);
 $header-font-color: rgb(113, 127, 157);
 $days-font-color: rgb(137, 145, 162);
+$days-list-bg: rgb(210, 213, 219);
+$month-btn-size: 50px;
+
+.main {
+  max-width: 1920px;
+  min-width: 1024px;
+  display: flex;
+  flex-flow: column;
+}
 
 .app-header {
     display: flex;
     align-items: center;
-    height: 24px;
     padding: 24px;
     justify-content: space-between;
     border: 1px solid #ccc;
     background: $header-bg;
     color: $header-font-color;
-    font-size: 27px;
+    font-size: 42px;
     font-weight: bold;
 }
 
-$days-list-bg: rgb(210, 213, 219);
+.month-btn {
+  width: $month-btn-size;
+  height: $month-btn-size;
+  background: url("~src/assets/images/arrow-left.png") no-repeat;
+  background-size: cover;
+  opacity: .4;
+
+  &:hover {
+    opacity: .5;
+  }
+
+  &:active {
+    opacity: .4;
+  }
+
+  &--next {
+    transform: rotateZ(180deg);
+  }
+}
 
 .days-list {
     height: 24px;

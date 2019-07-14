@@ -1,9 +1,12 @@
-<div class="task" draggable="true" (dragstart)="drag($event)">
-    <div class="text">
-        {{task?.text}}
-    </div>
-    <button
-        *ngIf="showDelete"
-        class="delete"
-        (click)="delete()">X</button>
+<div class="task"
+     draggable="true"
+     (dragstart)="drag($event)">
+  <div class="text">
+    {{task?.text}}
+  </div>
+  <button *ngIf="showDelete"
+          class="delete"
+          (click)="delete()">
+    <i class="font-icon icon-cancel">&#xe800;</i>
+  </button>
 </div>

@@ -6,7 +6,7 @@
     (drop)="drop($event)">
     <div class="cell-date">{{date | dateFormat:'DAY_NUMBER'}}</div>
     <div class="tasks">
-        <app-task *ngFor="let task of tasks$ | async" [task]="task"></app-task>
+        <app-task *ngFor="let task of tasks$ | async; trackBy: trackByFn" [task]="task"></app-task>
     </div>
 </div>
 
@@ -17,7 +17,7 @@
     <div class="arrow"></div>
     <div class="tasks">
         <app-task
-            *ngFor="let task of tasks$ | async"
+            *ngFor="let task of tasks$ | async; trackBy: trackByFn"
             class="edit-popup__task"
             [task]="task"
             [showDelete]="true"></app-task>
@@ -25,7 +25,7 @@
 
     <textarea
         class="input"
-        placeholder="Ctrl+enter = add event"
+        placeholder="Ctrl + enter — add event"
         rows="3"
         (keydown.control.enter)="save($event)"></textarea>
 </div>

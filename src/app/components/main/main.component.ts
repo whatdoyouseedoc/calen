@@ -3,13 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
 import { DateService } from '../../date.service';
 import { Location } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+export class MainComponent implements OnInit, OnDestroy {
 
   public year: string;
   public month: string;
@@ -20,7 +21,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public params$;
   public daysList: string[];
 
-  constructor(private activatedRoute: ActivatedRoute, private dateSrv: DateService, private location: Location) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private dateSrv: DateService,
+    private location: Location
+  ) {
     this.params$ = this.activatedRoute.params.subscribe(({month, year}) => {
       if (month === undefined || year === undefined) {
         year = moment().format('YYYY');

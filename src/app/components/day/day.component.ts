@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import * as moment from 'moment';
@@ -18,10 +18,12 @@ import { AppState } from '../../store/state/app.state';
 export class DayComponent implements OnInit {
 
   private _date: string;
-  @Input() public set date(date: string) {
+  @Input()
+  public set date(date: string) {
     this._date = date;
     this.popupLeftAlign = this.popupOnLeft();
   }
+
   public get date() {
     return this._date;
   }
@@ -33,8 +35,7 @@ export class DayComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     private activatedRoute: ActivatedRoute,
-    private idGen: IdGenService,
-    private cd: ChangeDetectorRef) {
+    private idGen: IdGenService) {
   }
 
   ngOnInit() {
@@ -59,11 +60,11 @@ export class DayComponent implements OnInit {
     event.target.value = '';
   }
 
-  allowDrop(event) {
+  allowDrop(event: DragEvent) {
     event.preventDefault();
   }
 
-  drop(event) {
+  drop(event: DragEvent) {
     event.preventDefault();
     const id = event.dataTransfer.getData('id');
     this.store.pipe(first(), select(selectTaskById, {id})).subscribe(it => {
@@ -79,8 +80,12 @@ export class DayComponent implements OnInit {
     return ['Friday', 'Saturday', 'Sunday'].includes(moment(this.date).format('dddd'));
   }
 
+  public trackByFn(item: Task) {
+    return item.id;
+  }
+
   public setIsInactive() {
-    const routeMonth = this.activatedRoute.snapshot.params['month'];
+    const routeMonth = this.activatedRoute.snapshot.params.month || moment().format('M');
     const cellMonth = moment(this.date).format('M');
 
     return routeMonth !== cellMonth;
@@ -90,11 +95,22 @@ export class DayComponent implements OnInit {
     const blurHandler = (event) => {
       if (event.target.closest('.edit-popup') === null) {
         this.editMode = false;
-        window.removeEventListener('click', blurHandler);
+        document.body.removeEventListener('click', blurHandler);
+        document.body.removeEventListener('keydown', escHandler);
       }
     };
+
+    const escHandler = ({keyCode}) => {
+      if (keyCode === 27) {
+        this.editMode = false;
+        document.body.removeEventListener('click', blurHandler);
+        document.body.removeEventListener('keydown', escHandler);
+      }
+    };
+
     setTimeout(() => {
-      window.addEventListener('click', blurHandler);
+      document.body.addEventListener('click', blurHandler);
+      document.body.addEventListener('keydown', escHandler);
     });
   }
 }

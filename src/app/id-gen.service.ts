@@ -5,9 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class IdGenService {
 
-  constructor() { }
+  constructor() {
+  }
 
   getId(len = 16) {
-    return [...Array(len)].map(i=>(~~(Math.random()*36)).toString(36)).join('');
+    return [...Array(len)].fill(0).map(() => (~~(Math.random() * 36)).toString(36)).join('');
   }
 }
